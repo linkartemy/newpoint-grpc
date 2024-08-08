@@ -2,6 +2,7 @@
 
 import "response.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
 
 option csharp_namespace = "NewPoint";
 
@@ -35,6 +36,13 @@ message PostModel {
   int32 views = 12;
   bool liked = 13;
   google.protobuf.Timestamp creation_timestamp = 14;
+}
+
+message NullablePost {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    post.PostModel data = 2;
+  }
 }
 
 message AddPostRequest {
