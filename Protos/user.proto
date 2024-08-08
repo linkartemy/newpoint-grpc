@@ -24,6 +24,7 @@ service GrpcUser {
   rpc GetTwoFactorByToken (GetTwoFactorByTokenRequest) returns (response.Response);
   rpc UpdateTwoFactor (UpdateTwoFactorRequest) returns (response.Response);
   rpc GetUserByLogin (GetUserByLoginRequest) returns (response.Response);
+  rpc GetPostUserDataById (GetUserPostDataByIdRequest) returns (response.Response);
 }
 
 message UserModel {
@@ -178,5 +179,13 @@ message GetUserByLoginRequest {
 }
 
 message GetUserByLoginResponse {
+  UserModel user = 1;
+}
+
+message GetPostUserDataByIdRequest {
+  int64 id = 1;
+}
+
+message GetPostUserDataByIdResponse {
   UserModel user = 1;
 }
