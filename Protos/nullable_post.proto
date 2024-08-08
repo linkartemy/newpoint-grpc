@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+import "response.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+option csharp_namespace = "NewPoint";
+
+package nullable_post;
+
+message NullablePost {
+    oneof kind {
+      google.protobuf.NullValue null = 1;
+      PostModel data = 2;
+    }
+}

@@ -5,6 +5,8 @@ import "google/protobuf/timestamp.proto";
 import "nullable.proto";
 import "article.proto";
 import "post.proto";
+import "nullable_post.proto";
+import "nullable_article.proto";
 
 option csharp_namespace = "NewPoint";
 
@@ -16,8 +18,8 @@ service GrpcFeed {
 
 message FeedElement {
   string id = 1;
-  article.NullableArticle article = 2;
-  post.NullablePost post = 3;
+  nullable_article.NullableArticle article = 2;
+  nullable_post.NullablePost post = 3;
 }
 
 message GetFeedByUserIdRequest {

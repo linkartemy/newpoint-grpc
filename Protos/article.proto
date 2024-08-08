@@ -43,13 +43,6 @@ message ArticleModel {
   google.protobuf.Timestamp creation_timestamp = 15;
 }
 
-message NullableArticle {
-  oneof kind {
-    google.protobuf.NullValue null = 1;
-    ArticleModel data = 2;
-  }
-}
-
 message AddArticleRequest {
   int64 author_id = 1;
   string title = 2;

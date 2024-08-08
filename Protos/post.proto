@@ -41,13 +41,6 @@ message PostModel {
   google.protobuf.Timestamp creation_timestamp = 14;
 }
 
-message NullablePost {
-  oneof kind {
-    google.protobuf.NullValue null = 1;
-    PostModel data = 2;
-  }
-}
-
 message AddPostRequest {
   int64 author_id = 1;
   string content = 2;
