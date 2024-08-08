@@ -19,6 +19,9 @@ service GrpcPost {
   rpc SharePost (SharePostRequest) returns (response.Response);
   rpc AddPostView (AddPostViewRequest) returns (response.Response);
   rpc DeletePost (DeletePostRequest) returns (response.Response);
+  rpc GetMaxId (GetMaxIdRequest) returns (response.Response);
+  rpc GetPostsFromId (GetPostsFromIdRequest) returns (response.Response);
+  rpc IsLikedByUser (IsLikedByUserRequest) returns (response.Response);
 }
 
 message PostModel {
@@ -41,7 +44,7 @@ message PostModel {
 message NullablePost {
   oneof kind {
     google.protobuf.NullValue null = 1;
-    post.PostModel data = 2;
+    PostModel data = 2;
   }
 }
 
@@ -125,4 +128,27 @@ message DeletePostRequest {
 
 message DeletePostResponse {
   bool deleted = 1;
+}
+
+message GetMaxIdRequest {}
+
+message GetMaxIdResponse {
+  int64 id = 1;
+}
+
+message GetPostsFromIdRequest {
+  int64 id = 1;
+}
+
+message GetPostsFromIdResponse {
+  repeated PostModel posts = 1;
+}
+
+message IsLikedByUserRequest {
+  int64 post_id = 1;
+  int64 user_id = 2;
+}
+
+message IsLikedByUserResponse {
+  bool liked = 1;
 }
