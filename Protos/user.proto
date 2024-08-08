@@ -24,6 +24,7 @@ service GrpcUser {
   rpc GetTwoFactorByToken (GetTwoFactorByTokenRequest) returns (response.Response);
   rpc UpdateTwoFactor (UpdateTwoFactorRequest) returns (response.Response);
   rpc GetUserByLogin (GetUserByLoginRequest) returns (response.Response);
+  
   rpc GetPostUserDataById (GetPostUserDataByIdRequest) returns (response.Response);
 }
 
