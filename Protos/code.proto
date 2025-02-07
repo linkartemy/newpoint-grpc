@@ -1,21 +1,18 @@
 syntax = "proto3";
 
-import "response.proto";
-import "nullable.proto";
-
 option csharp_namespace = "NewPoint";
 
 package code;
 
 service GrpcCode {
-  rpc AddEmailVerificationCode (AddEmailVerificationCodeRequest) returns (response.Response);
-  rpc VerifyEmailVerificationCode (VerifyEmailVerificationCodeRequest) returns (response.Response);
-  rpc AddPhoneVerificationCode (AddPhoneVerificationCodeRequest) returns (response.Response);
-  rpc VerifyPhoneVerificationCode (VerifyPhoneVerificationCodeRequest) returns (response.Response);
-  rpc AddPasswordChangeVerificationCode (AddPasswordChangeVerificationCodeRequest) returns (response.Response);
-  rpc VerifyPasswordChangeVerificationCode (VerifyPasswordChangeVerificationCodeRequest) returns (response.Response);
-  rpc AddAccountDeletionVerificationCode (AddAccountDeletionVerificationCodeRequest) returns (response.Response);
-  rpc VerifyAccountDeletionVerificationCode (VerifyAccountDeletionVerificationCodeRequest) returns (response.Response);
+  rpc AddEmailVerificationCode (AddEmailVerificationCodeRequest) returns (AddEmailVerificationCodeResponse);
+  rpc VerifyEmailVerificationCode (VerifyEmailVerificationCodeRequest) returns (VerifyEmailVerificationCodeResponse);
+  rpc AddPhoneVerificationCode (AddPhoneVerificationCodeRequest) returns (AddPhoneVerificationCodeResponse);
+  rpc VerifyPhoneVerificationCode (VerifyPhoneVerificationCodeRequest) returns (VerifyPhoneVerificationCodeResponse);
+  rpc AddPasswordChangeVerificationCode (AddPasswordChangeVerificationCodeRequest) returns (AddPasswordChangeVerificationCodeResponse);
+  rpc VerifyPasswordChangeVerificationCode (VerifyPasswordChangeVerificationCodeRequest) returns (VerifyPasswordChangeVerificationCodeResponse);
+  rpc AddAccountDeletionVerificationCode (AddAccountDeletionVerificationCodeRequest) returns (AddAccountDeletionVerificationCodeResponse);
+  rpc VerifyAccountDeletionVerificationCode (VerifyAccountDeletionVerificationCodeRequest) returns (VerifyAccountDeletionVerificationCodeResponse);
 }
 
 message AddEmailVerificationCodeRequest {
@@ -53,8 +50,8 @@ message VerifyPhoneVerificationCodeResponse {
 }
 
 message AddPasswordChangeVerificationCodeRequest {
-  NullableString email = 1;
-  NullableString phone = 2;
+  optional string email = 1;
+  optional string phone = 2;
 }
 
 message AddPasswordChangeVerificationCodeResponse {
@@ -62,8 +59,8 @@ message AddPasswordChangeVerificationCodeResponse {
 }
 
 message VerifyPasswordChangeVerificationCodeRequest {
-  NullableString email = 1;
-  NullableString phone = 2;
+  optional string email = 1;
+  optional string phone = 2;
   string code = 3;
 }
 
@@ -72,17 +69,17 @@ message VerifyPasswordChangeVerificationCodeResponse {
 }
 
 message AddAccountDeletionVerificationCodeRequest {
-  NullableString email = 1;
-  NullableString phone = 2;
+  optional string email = 1;
+  optional string phone = 2;
 }
 
-message AddAccountDeletionCodeResponse {
+message AddAccountDeletionVerificationCodeResponse {
   bool sent = 1;
 }
 
 message VerifyAccountDeletionVerificationCodeRequest {
-  NullableString email = 1;
-  NullableString phone = 2;
+  optional string email = 1;
+  optional string phone = 2;
   string code = 3;
 }
 

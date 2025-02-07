@@ -1,6 +1,5 @@
 ﻿syntax = "proto3";
 
-import "response.proto";
 import "google/protobuf/timestamp.proto";
 
 option csharp_namespace = "NewPoint";
@@ -8,11 +7,11 @@ option csharp_namespace = "NewPoint";
 package article_comment;
 
 service GrpcArticleComment {
-  rpc GetCommentsByArticleId (GetCommentsByArticleIdRequest) returns (response.Response);
-  rpc AddComment (AddArticleCommentRequest) returns (response.Response);
-  rpc DeleteComment (DeleteArticleCommentRequest) returns (response.Response);
-  rpc LikeComment (LikeArticleCommentRequest) returns (response.Response);
-  rpc UnLikeComment (UnLikeArticleCommentRequest) returns (response.Response);
+  rpc GetCommentsByArticleId (GetCommentsByArticleIdRequest) returns (GetCommentsByArticleIdResponse);
+  rpc AddComment (AddArticleCommentRequest) returns (AddArticleCommentResponse);
+  rpc DeleteComment (DeleteArticleCommentRequest) returns (DeleteArticleCommentResponse);
+  rpc LikeComment (LikeArticleCommentRequest) returns (LikeArticleCommentResponse);
+  rpc UnLikeComment (UnLikeArticleCommentRequest) returns (UnLikeArticleCommentResponse);
 }
 
 message ArticleCommentModel {
