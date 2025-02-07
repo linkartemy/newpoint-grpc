@@ -1,7 +1,5 @@
 ﻿syntax = "proto3";
 
-import "response.proto";
-import "nullable.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 
@@ -10,19 +8,19 @@ option csharp_namespace = "NewPoint";
 package article;
 
 service GrpcArticle {
-  rpc AddArticle (AddArticleRequest) returns (response.Response);
-  rpc GetArticles (GetArticlesRequest) returns (response.Response);
-  rpc GetArticlesByUserId (GetArticlesByUserIdRequest) returns (response.Response);
-  rpc GetArticlesByUserIdAfterTimestamp (GetArticlesByUserIdAfterTimestampRequest) returns (response.Response);
-  rpc GetArticleById (GetArticleByIdRequest) returns (response.Response);
-  rpc LikeArticle (LikeArticleRequest) returns (response.Response);
-  rpc UnLikeArticle (UnLikeArticleRequest) returns (response.Response);
-  rpc ShareArticle (ShareArticleRequest) returns (response.Response);
-  rpc AddArticleView (AddArticleViewRequest) returns (response.Response);
-  rpc DeleteArticle (DeleteArticleRequest) returns (response.Response);
-  rpc GetMaxId (GetMaxIdRequest) returns (response.Response);
-  rpc GetArticlesFromId (GetArticlesFromIdRequest) returns (response.Response);
-  rpc IsLikedByUser (IsLikedByUserRequest) returns (response.Response);
+  rpc AddArticle (AddArticleRequest) returns (AddArticleResponse);
+  rpc GetArticles (GetArticlesRequest) returns (GetArticlesResponse);
+  rpc GetArticlesByUserId (GetArticlesByUserIdRequest) returns (GetArticlesByUserIdResponse);
+  rpc GetArticlesByUserIdAfterTimestamp (GetArticlesByUserIdAfterTimestampRequest) returns (GetArticlesByUserIdAfterTimestampResponse);
+  rpc GetArticleById (GetArticleByIdRequest) returns (GetArticleByIdResponse);
+  rpc LikeArticle (LikeArticleRequest) returns (LikeArticleResponse);
+  rpc UnLikeArticle (UnLikeArticleRequest) returns (UnLikeArticleResponse);
+  rpc ShareArticle (ShareArticleRequest) returns (ShareArticleResponse);
+  rpc AddArticleView (AddArticleViewRequest) returns (AddArticleViewResponse);
+  rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
+  rpc GetMaxId (GetMaxIdRequest) returns (GetMaxIdResponse);
+  rpc GetArticlesFromId (GetArticlesFromIdRequest) returns (GetArticlesFromIdResponse);
+  rpc IsLikedByUser (IsLikedByUserRequest) returns (IsLikedByUserResponse);
 }
 
 message ArticleModel {

@@ -1,31 +1,29 @@
 syntax = "proto3";
 
-import "response.proto";
 import "google/protobuf/timestamp.proto";
-import "nullable.proto";
 
 option csharp_namespace = "NewPoint";
 
 package user;
 
 service GrpcUser {
-  rpc Login (LoginRequest) returns (response.Response);
-  rpc Register (RegisterRequest) returns (response.Response);
-  rpc GetUserByToken (GetUserByTokenRequest) returns (response.Response);
-  rpc GetProfileById (GetProfileByIdRequest) returns (response.Response);
-  rpc ValidateUser (ValidateUserRequest) returns (response.Response);
-  rpc UpdateProfile (UpdateProfileRequest) returns (response.Response);
-  rpc UpdateProfileImage (UpdateProfileImageRequest) returns (response.Response);
-  rpc Follow (FollowRequest) returns (response.Response);
-  rpc IsFollowing (IsFollowingRequest) returns (response.Response);
-  rpc ChangeEmail (ChangeEmailRequest) returns (response.Response);
-  rpc ChangePassword (ChangePasswordRequest) returns (response.Response);
-  rpc VerifyPassword (VerifyPasswordRequest) returns (response.Response);
-  rpc GetTwoFactorByToken (GetTwoFactorByTokenRequest) returns (response.Response);
-  rpc UpdateTwoFactor (UpdateTwoFactorRequest) returns (response.Response);
-  rpc GetUserByLogin (GetUserByLoginRequest) returns (response.Response);
+  rpc Login (LoginRequest) returns (LoginResponse);
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc GetUserByToken (GetUserByTokenRequest) returns (GetUserByTokenResponse);
+  rpc GetProfileById (GetProfileByIdRequest) returns (GetProfileByIdResponse);
+  rpc ValidateUser (ValidateUserRequest) returns (ValidateUserResponse);
+  rpc UpdateProfile (UpdateProfileRequest) returns (UpdateProfileResponse);
+  rpc UpdateProfileImage (UpdateProfileImageRequest) returns (UpdateProfileImageResponse);
+  rpc Follow (FollowRequest) returns (FollowResponse);
+  rpc IsFollowing (IsFollowingRequest) returns (IsFollowingResponse);
+  rpc ChangeEmail (ChangeEmailRequest) returns (ChangeEmailResponse);
+  rpc ChangePassword (ChangePasswordRequest) returns (ChangePasswordResponse);
+  rpc VerifyPassword (VerifyPasswordRequest) returns (VerifyPasswordResponse);
+  rpc GetTwoFactorByToken (GetTwoFactorByTokenRequest) returns (GetTwoFactorByTokenResponse);
+  rpc UpdateTwoFactor (UpdateTwoFactorRequest) returns (UpdateTwoFactorResponse);
+  rpc GetUserByLogin (GetUserByLoginRequest) returns (GetUserByLoginResponse);
   
-  rpc GetPostUserDataById (GetPostUserDataByIdRequest) returns (response.Response);
+  rpc GetPostUserDataById (GetPostUserDataByIdRequest) returns (GetPostUserDataByIdResponse);
 }
 
 message UserModel {
@@ -33,16 +31,16 @@ message UserModel {
   string login = 2;
   string name = 3;
   string surname = 4;
-  NullableString description = 5;
-  NullableString location = 6;
-  NullableString email = 7;
-  NullableString phone = 8;
+  optional string description = 5;
+  optional string location = 6;
+  optional string email = 7;
+  optional string phone = 8;
   int64 profile_image_id = 9;
   int64 header_image_id = 10;
-  NullableTimestamp birth_date = 11;
-  NullableTimestamp registration_timestamp = 12;
-  NullableTimestamp last_login_timestamp = 13;
-  NullableString ip = 14;
+  optional google.protobuf.Timestamp birth_date = 11;
+  optional google.protobuf.Timestamp registration_timestamp = 12;
+  optional google.protobuf.Timestamp last_login_timestamp = 13;
+  optional string ip = 14;
   int32 followers = 15;
   int32 following = 16;
 }
@@ -100,9 +98,9 @@ message ValidateUserResponse {
 message UpdateProfileRequest {
   string name = 1;
   string surname = 2;
-  string description = 3;
-  string location = 4;
-  google.protobuf.Timestamp birth_date = 5;
+  optional string description = 3;
+  optional string location = 4;
+  optional google.protobuf.Timestamp birth_date = 5;
 }
 
 message UpdateProfileResponse {

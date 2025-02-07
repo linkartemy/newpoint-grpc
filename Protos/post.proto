@@ -1,27 +1,25 @@
 ﻿syntax = "proto3";
 
-import "response.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 
 option csharp_namespace = "NewPoint";
 
 package post;
 
 service GrpcPost {
-  rpc AddPost (AddPostRequest) returns (response.Response);
-  rpc GetPosts (GetPostsRequest) returns (response.Response);
-  rpc GetPostsByUserId (GetPostsByUserIdRequest) returns (response.Response);
-  rpc GetPostsByUserIdAfterTimestamp (GetPostsByUserIdAfterTimestampRequest) returns (response.Response);
-  rpc GetPostById (GetPostByIdRequest) returns (response.Response);
-  rpc LikePost (LikePostRequest) returns (response.Response);
-  rpc UnLikePost (UnLikePostRequest) returns (response.Response);
-  rpc SharePost (SharePostRequest) returns (response.Response);
-  rpc AddPostView (AddPostViewRequest) returns (response.Response);
-  rpc DeletePost (DeletePostRequest) returns (response.Response);
-  rpc GetMaxId (GetMaxIdRequest) returns (response.Response);
-  rpc GetPostsFromId (GetPostsFromIdRequest) returns (response.Response);
-  rpc IsLikedByUser (IsLikedByUserRequest) returns (response.Response);
+  rpc AddPost (AddPostRequest) returns (AddPostResponse);
+  rpc GetPosts (GetPostsRequest) returns (GetPostsResponse);
+  rpc GetPostsByUserId (GetPostsByUserIdRequest) returns (GetPostsByUserIdResponse);
+  rpc GetPostsByUserIdAfterTimestamp (GetPostsByUserIdAfterTimestampRequest) returns (GetPostsByUserIdAfterTimestampResponse);
+  rpc GetPostById (GetPostByIdRequest) returns (GetPostByIdResponse);
+  rpc LikePost (LikePostRequest) returns (LikePostResponse);
+  rpc UnLikePost (UnLikePostRequest) returns (UnLikePostResponse);
+  rpc SharePost (SharePostRequest) returns (SharePostResponse);
+  rpc AddPostView (AddPostViewRequest) returns (AddPostViewResponse);
+  rpc DeletePost (DeletePostRequest) returns (DeletePostResponse);
+  rpc GetMaxId (GetMaxIdRequest) returns (GetMaxIdResponse);
+  rpc GetPostsFromId (GetPostsFromIdRequest) returns (GetPostsFromIdResponse);
+  rpc IsLikedByUser (IsLikedByUserRequest) returns (IsLikedByUserResponse);
 }
 
 message PostModel {
@@ -39,13 +37,6 @@ message PostModel {
   int32 views = 12;
   bool liked = 13;
   google.protobuf.Timestamp creation_timestamp = 14;
-}
-
-message NullablePost {
-  oneof kind {
-    google.protobuf.NullValue null = 1;
-    PostModel data = 2;
-  }
 }
 
 message AddPostRequest {
