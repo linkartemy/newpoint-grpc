@@ -18,9 +18,9 @@ service GrpcArticle {
   rpc ShareArticle (ShareArticleRequest) returns (ShareArticleResponse);
   rpc AddArticleView (AddArticleViewRequest) returns (AddArticleViewResponse);
   rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
-  rpc GetMaxId (GetMaxIdRequest) returns (GetMaxIdResponse);
+  rpc GetArticleMaxId (GetArticleMaxIdRequest) returns (GetArticleMaxIdResponse);
   rpc GetArticlesFromId (GetArticlesFromIdRequest) returns (GetArticlesFromIdResponse);
-  rpc IsLikedByUser (IsLikedByUserRequest) returns (IsLikedByUserResponse);
+  rpc IsArticleLikedByUser (IsArticleLikedByUserRequest) returns (IsArticleLikedByUserResponse);
 }
 
 message ArticleModel {
@@ -131,9 +131,9 @@ message DeleteArticleResponse {
   bool deleted = 1;
 }
 
-message GetMaxIdRequest {}
+message GetArticleMaxIdRequest {}
 
-message GetMaxIdResponse {
+message GetArticleMaxIdResponse {
   int64 id = 1;
 }
 
@@ -145,11 +145,11 @@ message GetArticlesFromIdResponse {
   repeated ArticleModel articles = 1;
 }
 
-message IsLikedByUserRequest {
+message IsArticleLikedByUserRequest {
   int64 article_id = 1;
   int64 user_id = 2;
 }
 
-message IsLikedByUserResponse {
+message IsArticleLikedByUserResponse {
   bool liked = 1;
 }
