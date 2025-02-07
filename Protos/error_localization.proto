@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "NewPoint";
+
+package error_localization;
+
+service GrpcErrorLocalization {
+    rpc GetErrorMessage(GetErrorMessageRequest) returns (ErrorMessageResponse);
+}
+
+message GetErrorMessageRequest {
+    string error_code = 1;
+    string language = 2;
+}
+
+message ErrorMessageResponse {
+    string error_code = 1;
+    string message = 2;
+    string language = 3;
+}
