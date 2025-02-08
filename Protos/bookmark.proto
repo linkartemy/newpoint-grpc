@@ -53,12 +53,12 @@ message AddArticleBookmarkResponse {
 
 message GetBookmarkedPostsRequest {
   int64 user_id = 1;
-  BookmarkPagination paginator = 2;
+  BookmarkPagination pagination = 2;
 }
 
 message GetBookmarkedPostsResponse {
   repeated post.PostModel posts = 1;
-  BookmarkNextPagination next_paginator = 2;
+  BookmarkNextPagination next_pagination = 2;
 }
 
 message GetBookmarkedArticlesRequest {
@@ -68,7 +68,7 @@ message GetBookmarkedArticlesRequest {
 
 message GetBookmarkedArticlesResponse {
   repeated article.ArticleModel articles = 1;
-  BookmarkNextPagination next_paginator = 2;
+  BookmarkNextPagination next_pagination = 2;
 }
 
 message DeletePostBookmarkByPostIdRequest {
