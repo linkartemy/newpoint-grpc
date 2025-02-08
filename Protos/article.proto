@@ -1,7 +1,6 @@
 ﻿syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/struct.proto";
 
 option csharp_namespace = "NewPoint";
 
@@ -11,15 +10,12 @@ service GrpcArticle {
   rpc AddArticle (AddArticleRequest) returns (AddArticleResponse);
   rpc GetArticles (GetArticlesRequest) returns (GetArticlesResponse);
   rpc GetArticlesByUserId (GetArticlesByUserIdRequest) returns (GetArticlesByUserIdResponse);
-  rpc GetArticlesByUserIdAfterTimestamp (GetArticlesByUserIdAfterTimestampRequest) returns (GetArticlesByUserIdAfterTimestampResponse);
   rpc GetArticleById (GetArticleByIdRequest) returns (GetArticleByIdResponse);
   rpc LikeArticle (LikeArticleRequest) returns (LikeArticleResponse);
   rpc UnLikeArticle (UnLikeArticleRequest) returns (UnLikeArticleResponse);
   rpc ShareArticle (ShareArticleRequest) returns (ShareArticleResponse);
   rpc AddArticleView (AddArticleViewRequest) returns (AddArticleViewResponse);
   rpc DeleteArticle (DeleteArticleRequest) returns (DeleteArticleResponse);
-  rpc GetArticleMaxId (GetArticleMaxIdRequest) returns (GetArticleMaxIdResponse);
-  rpc GetArticlesFromId (GetArticlesFromIdRequest) returns (GetArticlesFromIdResponse);
   rpc IsArticleLikedByUser (IsArticleLikedByUserRequest) returns (IsArticleLikedByUserResponse);
 }
 
@@ -41,13 +37,6 @@ message ArticleModel {
   google.protobuf.Timestamp creation_timestamp = 15;
 }
 
-message NullableArticle {
-  oneof kind {
-    google.protobuf.NullValue null = 1;
-    ArticleModel data = 2;
-  }
-}
-
 message AddArticleRequest {
   int64 author_id = 1;
   string title = 2;
@@ -58,28 +47,31 @@ message AddArticleResponse {
   int64 id = 1;
 }
 
-message GetArticlesRequest {}
+message GetArticlesRequest {
+  int32 page_size = 1;
+  optional google.protobuf.Timestamp cursor_created_at = 2;
+  optional int64 cursor_id = 3;
+}
 
 message GetArticlesResponse {
   repeated ArticleModel articles = 1;
+  google.protobuf.Timestamp next_cursor_created_at = 2;
+  int64 next_cursor_id = 3;
+  bool has_more = 4;
 }
 
 message GetArticlesByUserIdRequest {
   int64 user_id = 1;
-  int64 last_article_id = 2;
+  int32 page_size = 2;
+  optional google.protobuf.Timestamp cursor_created_at = 3;
+  optional int64 cursor_id = 4;
 }
 
 message GetArticlesByUserIdResponse {
   repeated ArticleModel articles = 1;
-}
-
-message GetArticlesByUserIdAfterTimestampRequest {
-  int64 user_id = 1;
-  google.protobuf.Timestamp timestamp = 2;
-}
-
-message GetArticlesByUserIdAfterTimestampResponse {
-  repeated ArticleModel articles = 1;
+  google.protobuf.Timestamp next_cursor_created_at = 2;
+  int64 next_cursor_id = 3;
+  bool has_more = 4;
 }
 
 message GetArticleByIdRequest {
@@ -129,20 +121,6 @@ message DeleteArticleRequest {
 
 message DeleteArticleResponse {
   bool deleted = 1;
-}
-
-message GetArticleMaxIdRequest {}
-
-message GetArticleMaxIdResponse {
-  int64 id = 1;
-}
-
-message GetArticlesFromIdRequest {
-  int64 id = 1;
-}
-
-message GetArticlesFromIdResponse {
-  repeated ArticleModel articles = 1;
 }
 
 message IsArticleLikedByUserRequest {

@@ -8,6 +8,7 @@ package article_comment;
 
 service GrpcArticleComment {
   rpc GetCommentsByArticleId (GetCommentsByArticleIdRequest) returns (GetCommentsByArticleIdResponse);
+  rpc GetArticleCommentById (GetArticleCommentByIdRequest) returns (GetArticleCommentByIdResponse);
   rpc AddComment (AddArticleCommentRequest) returns (AddArticleCommentResponse);
   rpc DeleteComment (DeleteArticleCommentRequest) returns (DeleteArticleCommentResponse);
   rpc LikeComment (LikeArticleCommentRequest) returns (LikeArticleCommentResponse);
@@ -30,10 +31,24 @@ message ArticleCommentModel {
 
 message GetCommentsByArticleIdRequest {
   int64 article_id = 1;
+  int32 page_size = 2;
+  optional google.protobuf.Timestamp cursor_created_at = 3;
+  optional int64 cursor_id = 4;
 }
 
 message GetCommentsByArticleIdResponse {
   repeated ArticleCommentModel comments = 1;
+  google.protobuf.Timestamp next_cursor_created_at = 2;
+  int64 next_cursor_id = 3;
+  bool has_more = 4;
+}
+
+message GetArticleCommentByIdRequest {
+  int64 comment_id = 1;
+}
+
+message GetArticleCommentByIdResponse {
+  ArticleCommentModel comment = 1;
 }
 
 message AddArticleCommentRequest {
