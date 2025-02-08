@@ -14,8 +14,10 @@ service GrpcFeed {
 
 message FeedElement {
   string id = 1;
-  optional article.ArticleModel article = 2;
-  optional post.PostModel post = 3;
+  oneof content {
+    article.ArticleModel article = 2;
+    post.PostModel post = 3;
+  }
 }
 
 message GetFeedByUserIdRequest {
