@@ -33,12 +33,12 @@ message FeedNextPagination {
 }
 
 message GetFeedByUserIdRequest {
-  FeedPagination article_paginator = 1;
-  FeedPagination post_paginator = 2;
+  FeedPagination article_pagination = 1;
+  FeedPagination post_pagination = 2;
 }
 
 message GetFeedByUserIdResponse {
   repeated FeedElement feed = 1;
-  FeedNextPagination article_next_paginator = 2;
-  FeedNextPagination post_next_paginator = 3;
+  FeedNextPagination article_next_pagination = 2;
+  FeedNextPagination post_next_pagination = 3;
 }
