@@ -36,15 +36,9 @@ message UserModel {
   optional string phone = 8;
   int64 profile_image_id = 9;
   int64 header_image_id = 10;
-  oneof birth_date_wrapper {
-    google.protobuf.Timestamp birth_date = 11;
-  }
-  oneof registration_timestamp_wrapper {
-    google.protobuf.Timestamp registration_timestamp = 12;
-  }
-  oneof last_login_timestamp_wrapper {
-    google.protobuf.Timestamp last_login_timestamp = 13;
-  }
+  optional google.protobuf.Timestamp birth_date = 11;
+  optional google.protobuf.Timestamp registration_timestamp = 12;
+  optional google.protobuf.Timestamp last_login_timestamp = 13;
   optional string ip = 14;
   int32 followers = 15;
   int32 following = 16;
