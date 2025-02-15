@@ -60,7 +60,7 @@ message GetBookmarkedPostsResponse {
 
 message GetBookmarkedArticlesRequest {
   int64 user_id = 1;
-  BookmarkPagination paginator = 2;
+  BookmarkPagination pagination = 2;
 }
 
 message GetBookmarkedArticlesResponse {
