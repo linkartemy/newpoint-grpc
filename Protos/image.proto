@@ -6,6 +6,8 @@ package image;
 
 service GrpcImage {
   rpc GetImageById (GetImageByIdRequest) returns (GetImageByIdResponse);
+  rpc CountImagesByName (CountImagesByNameRequest) returns (CountImagesByNameResponse);
+  rpc InsertImage (InsertImageRequest) returns (InsertImageResponse);
 }
 
 message ImageModel {
@@ -13,12 +15,33 @@ message ImageModel {
   bytes data = 2;
   string bucket_name = 3;
   string name = 4;
+  string content_type = 5;
 }
 
 message GetImageByIdRequest {
   int64 id = 1;
+  string bucket_name = 2;
 }
 
 message GetImageByIdResponse {
   ImageModel image = 1;
+}
+
+message CountImagesByNameRequest {
+  string name = 1;
+}
+
+message CountImagesByNameResponse {
+  int32 count = 1;
+}
+
+message InsertImageRequest {
+  bytes data = 1;
+  string bucket_name = 2;
+  string name = 3;
+  string content_type = 4;
+}
+
+message InsertImageResponse {
+  int64 id = 1;
 }
