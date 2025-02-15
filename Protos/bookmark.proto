@@ -2,9 +2,6 @@
 
 import "google/protobuf/timestamp.proto";
 
-import "article.proto";
-import "post.proto";
-
 option csharp_namespace = "NewPoint";
 
 package bookmark;
@@ -57,7 +54,7 @@ message GetBookmarkedPostsRequest {
 }
 
 message GetBookmarkedPostsResponse {
-  repeated post.PostModel posts = 1;
+  repeated int64 postIds = 1;
   BookmarkNextPagination next_pagination = 2;
 }
 
@@ -67,7 +64,7 @@ message GetBookmarkedArticlesRequest {
 }
 
 message GetBookmarkedArticlesResponse {
-  repeated article.ArticleModel articles = 1;
+  repeated int64 articleIds = 1;
   BookmarkNextPagination next_pagination = 2;
 }
 
