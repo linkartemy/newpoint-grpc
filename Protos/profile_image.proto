@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option csharp_namespace = "NewPoint";
+
+package profile_image;
+
+service GrpcProfileImage {
+  rpc GetProfileImageById (GetProfileImageByIdRequest) returns (GetProfileImageByIdResponse);
+  rpc CountProfileImagesByName (CountProfileImagesByNameRequest) returns (CountProfileImagesByNameResponse);
+  rpc InsertProfileImage (InsertProfileImageRequest) returns (InsertProfileImageResponse);
+}
+
+message ProfileImageModel {
+  int64 id = 1;
+  bytes data = 2;
+  string bucket_name = 3;
+  string name = 4;
+  string content_type = 5;
+}
+
+message GetProfileImageByIdRequest {
+  int64 id = 1;
+  string bucket_name = 2;
+}
+
+message GetProfileImageByIdResponse {
+  ProfileImageModel image = 1;
+}
+
+message CountProfileImagesByNameRequest {
+  string name = 1;
+}
+
+message CountProfileImagesByNameResponse {
+  int32 count = 1;
+}
+
+message InsertProfileImageRequest {
+  bytes data = 1;
+  string bucket_name = 2;
+  string name = 3;
+  string content_type = 4;
+}
+
+message InsertProfileImageResponse {
+  int64 id = 1;
+}

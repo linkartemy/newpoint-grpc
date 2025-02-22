@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option csharp_namespace = "NewPoint";
+
+package post_image;
+
+service GrpcPostImage {
+  rpc GetPostImageById (GetPostImageByIdRequest) returns (GetPostImageByIdResponse);
+  rpc CountPostImagesByName (CountPostImagesByNameRequest) returns (CountPostImagesByNameResponse);
+  rpc InsertPostImage (InsertPostImageRequest) returns (InsertPostImageResponse);
+}
+
+message PostImageModel {
+  int64 id = 1;
+  bytes data = 2;
+  string bucket_name = 3;
+  string name = 4;
+  string content_type = 5;
+}
+
+message GetPostImageByIdRequest {
+  int64 id = 1;
+  string bucket_name = 2;
+}
+
+message GetPostImageByIdResponse {
+  PostImageModel image = 1;
+}
+
+message CountPostImagesByNameRequest {
+  string name = 1;
+}
+
+message CountPostImagesByNameResponse {
+  int32 count = 1;
+}
+
+message InsertPostImageRequest {
+  bytes data = 1;
+  string bucket_name = 2;
+  string name = 3;
+  string content_type = 4;
+}
+
+message InsertPostImageResponse {
+  int64 id = 1;
+}

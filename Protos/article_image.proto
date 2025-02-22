@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+option csharp_namespace = "NewPoint";
+
+package article_image;
+
+service GrpcArticleImage {
+  rpc GetArticleImageById (GetArticleImageByIdRequest) returns (GetArticleImageByIdResponse);
+  rpc CountArticleImagesByName (CountArticleImagesByNameRequest) returns (CountArticleImagesByNameResponse);
+  rpc InsertArticleImage (InsertArticleImageRequest) returns (InsertArticleImageResponse);
+}
+
+message ArticleImageModel {
+  int64 id = 1;
+  bytes data = 2;
+  string bucket_name = 3;
+  string name = 4;
+  string content_type = 5;
+}
+
+message GetArticleImageByIdRequest {
+  int64 id = 1;
+  string bucket_name = 2;
+}
+
+message GetArticleImageByIdResponse {
+  ArticleImageModel image = 1;
+}
+
+message CountArticleImagesByNameRequest {
+  string name = 1;
+}
+
+message CountArticleImagesByNameResponse {
+  int32 count = 1;
+}
+
+message InsertArticleImageRequest {
+  bytes data = 1;
+  string bucket_name = 2;
+  string name = 3;
+  string content_type = 4;
+}
+
+message InsertArticleImageResponse {
+  int64 id = 1;
+}
